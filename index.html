@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nostr Sites</title>
+	
+	<meta charset="UTF-8">
+	
+	
+<style>
+    	body {
+            font-size: 100%;
+            font-family: "Lucida Console", monospace;
+            line-height: 1;
+            background-color: black;
+						
+					}
+	
+input {
+	
+	color:white;
+}
+				
+				
+					
+	
+		.center {
+			text-align: center;
+			margin-top: 10px;
+			font-size: 40px;
+			
+			
+		}
+		
+		.fcf-form-control {
+			
+			height:50px;
+			font-size:30px;
+			width: 90%;
+			color:black;
+			
+		}
+		#fcf-button {
+			
+			height: 75px;
+			width: 250px;
+			font-size: 40px;
+			background-color: white;
+	color: #202020;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+		}
+		
+	
+		
+		.privacy {
+			
+			text-decoration: none;
+		}
+		
+    h1 {
+			font-family: "Helvetica";
+            font-weight: 700;
+						transform: scaleY(1.4);
+            text-align: center;
+            margin-top: 120px;
+            font-size: 90px;
+						color: #9966CB;
+        }
+
+        a {
+            color: #9966CB;
+            text-decoration: none;
+            font-size: 40px;
+            font-weight: bold;
+					}
+
+	
+
+.text	{
+	
+	color: white; 
+	text-align: center;
+	/*font-weight: bold; */
+	line-height: 1.3em; 
+	display:inline-block;
+	font-size: 45px;
+	margin-left: 40px;
+	margin-right: 40px;
+	
+	
+	
+}
+
+        .follow {
+					font-family: "Helvetica";
+            font-weight: 500;
+						transform: scaleY(1.4);
+            color: #9966CB;
+            text-decoration: none;
+            font-size: 50px;
+            font-weight: bold;
+						margin-bottom: -20px;
+					}
+					
+					
+#zapper
+{
+						font-family: "Helvetica";
+            font-weight: bold;
+						transform: scaleY(1.2);
+	margin-top: 30px;
+  margin-right: 20px;
+  float: right;
+	text-decoration: none;
+	height: 60px;
+	font-size: 40px;
+}	
+
+
+ .checkbox-label {
+        
+            margin-bottom: 10px;
+            font-size: 45px;
+            color: white;
+            
+        }
+
+        .checkbox-label input[type="checkbox"] {
+					
+					height:30px;
+					width:30px;
+
+					}
+					
+				
+					
+				.input-description {
+            font-size: 20px;
+            color: white;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .url-input-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .url-input-prefix {
+            color: white;
+            font-size: 50px;
+            margin-right: 5px;
+						margin-left: 10px;
+        }
+
+        .url-input-field {
+            height: 50px;
+            font-size: 30px;
+            width: 30%;
+            color: black;
+					}	
+
+					
+	</style>
+	
+</head>
+<body>
+	
+	
+	
+	
+	
+		<a href="#" onclick="launchBitcoinWallet()" id="zapper">⚡️TIPS</a>
+
+	
+<script>
+function launchBitcoinWallet() {
+  var fallbackLink = 'https://getalby.com/p/btcapsule';
+  var fallbackTimeout = setTimeout(function() {
+    window.location.href = fallbackLink;
+  }, 1000); 
+  window.location.href = 'walletofsatoshi://bronzeping54@walletofsatoshi.com';
+  window.onblur = function() {
+    clearTimeout(fallbackTimeout);
+  };
+}
+</script>	
+
+
+
+	
+ 	<script>
+		
+	
+	function launchClient(link) {
+		
+		if (link[0] == "h"){
+			console.log(link[0])
+			window.location.href = link
+		} else{
+		
+  var fallbackLink = 'https://snort.social/' + link;
+  var fallbackTimeout = setTimeout(function() {
+    document.location.assign(fallbackLink);
+  }, 4000); 
+  var damus = window.location.href = 'damus://' + link;
+	console.log(damus)
+  setTimeout(function() {
+    window.location.href = 'nostr://' + link;
+  }, 2000); 
+  window.onblur = function() {
+    clearTimeout(fallbackTimeout);
+  };
+	
+}	
+//}	
+}
+
+
+
+</script>	
+
+
+	
+	
+	<br>
+	
+<h1>NOSTR SITES</h1>
+	
+	
+
+	<p class = "text">Nostr Sites can convert your nostr note into a personal webpage.
+
+<br>
+<br>Use your favorite client to post some html as a note <br>(relay must be connected to wss://relay.nostr.band), <br>copy the note ID, and paste it below. You will be redirected to your new page that you can share with your friends!</p>
+	
+	
+<div class="center">
+	<p class="follow">ENTER A NOTEID:</p><br><br>
+	<form action="create_file.php" method="post" onsubmit="return validateForm()">
+		<input class="fcf-form-control" maxlength="3500" type="text" name="note" required><br><br>
+		<input type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block" value="Submit">
+	</form>
+	<p id="validation-error" style="color: red; font-weight: bold; display: none; margin-top: 10px;">PLEASE ENTER A VALID NOTE</p>
+</div>
+
+<script>
+	function validateForm() {
+		var noteInput = document.getElementsByName("note")[0];
+		var noteValue = noteInput.value;
+
+		if (noteValue.length !== 63 || noteValue.substr(0, 4) !== "note") {
+			document.getElementById("validation-error").style.display = "block";
+			return false;
+		}
+
+		return true;
+	}
+</script>
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+	<br>
+	<br>
+	
+	<p class="text">
+		
+		If you need a custom URL and access to CDNs like jQuery or Nostr Zaps, please check out <a class="follow" href="https://nostrsites.com/signup">Nostr Sites Premium.</a>
+<br><br>
+Already own a URL? You can <a class="follow" href="https://nostrsites.com/update">update your page here.</a>
+<br>
+<br>
+
+
+
+Don't know HTML? Try our <a class="follow" href="https://nostrsites.com/write">Markdown to HTML converter</a> or create <a class="follow" href="https://nostrsites.com/tree">a link tree</a>.
+
+<br>
+<br>
+
+
+If you like Nostr Sites please consider throwing some sats in my <a href="#" onclick="launchBitcoinWallet()" style="color:#9966CB; font-size:42px; font-weight:bold">tip jar🤙💜</a>
+		
+		<br>
+		<br>
+		
+Also, don't forget to <br>follow me on nostr:
+	
+<br><br>		
+		<a class="follow" href="#" onclick="launchClient('npub1v6xwae25wh6etmqw3m6yce9lnk5dnhtqpzk9fhxjfvjsryctjc8q2kxk5t')" >
+		BTCapsule🏴🧡
+		</a>		
+		
+	
+	
+	<br>
+<br>
+	<br>
+	<br>
+	
+<br>
+<br>
+	</p>
+	
+</body>
+</html>
+
